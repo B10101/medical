@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | Ex-can lounge</title>
+
+    <!---- stylesheet ------>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!----- google fonts ----->
+    <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"rel="stylesheet">
+
+    <!---- bootstrap ----->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <!---- icons ------>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+
+    <!---- for on scroll animations ------>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css">
+    <script src="https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js"></script>
+
+</head>
+<body>
+
+    <a name="home"></a>
+    <div class="wrapper">
+   <!------------------ hero sections ------------------------>
+
+        <div class="image-container">
+            <img src="{% static '1.jpg' %}" alt="">
+        </div>
+        
+        <div class="image-container1">
+          <img src="{{ request.user.customer.profile_image.url }}" alt="">
+        </div>
+
+        <div class="header">
+            <h1>Hi {{ request.user }}</h1>
+        </div>
+
+   <!------------------ hero sections ------------------------>
+
+    <!--------------- navbar starts here --------------->
+
+            <nav class="nav">
+                  
+
+                  <ul id="menu">
+                        
+                        
+                       
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        
+                  </ul>
+
+                  <div id="toggle">
+                        <div class="span">menu</div>
+                  </div>
+
+            </nav>
+
+            <div id="resize">
+                  <div class="close-btn">close</div>
+
+                  <ul id="menu">
+                    
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                  </ul>
+            </div>
+
+    <!--------------- navbar ends here --------------->
+
+    <div class="content">
+    
+    <!--------------- about section starts here --------------->
+    
+    <!--------------- programs section starts here --------------->
+
+    <a name="programs"></a>
+
+    <section class="services">
+
+      <div class="container-fluid">
+
+        <div class="section-data">
+
+          <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2 section-index wow fadeInUp" data-wow-delay="0.3s">01</div>
+                <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">Modules</div>
+          </div>
+
+          <div class="row service">
+            <div class="col-md-4"></div>
+            <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
+              <div class="icon">
+                  <ion-icon name="md-school"></ion-icon>
+              </div>
+              <div class="icon-title">
+                
+                <a href="{% url 'reserve' %}">Book an Appointment <br>
+                </a>
+            </div>
+
+            <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+              <div class="icon">
+                    <ion-icon name="ios-school"></ion-icon>
+              </div>
+              >
+            </div>
+          </div>
+
+          
+      
+            <div class="col-md-3 wow fadeInUp" data-wow-delay="0.8s">
+              <div class="icon">
+                <ion-icon name="md-school"></ion-icon>
+              </div>
+              <div class="icon-title">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!--------------- programs section ends here --------------->
+
+    
+    
+    
+    
+
+            <!--------------- footer ends here --------------->
+
+  </div>
+
+   </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script>
+// navigation starts here
+$("#toggle").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+      $("#resize ul li a").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+      $(".close-btn").click(function() {
+            $(this).toggleClass('on');
+            $("#resize").toggleClass("active");
+      });
+
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $(".nav");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
+});
+
+new WOW().init();
+
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+
+</script>
+</body>
+</html>
